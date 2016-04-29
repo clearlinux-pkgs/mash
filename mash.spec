@@ -4,7 +4,7 @@
 #
 Name     : mash
 Version  : 0.5.33
-Release  : 6
+Release  : 7
 URL      : http://pkgs.fedoraproject.org/repo/pkgs/mash/mash-0.5.33.tar.gz/6c5fc4f8b055c1ddc2fd6ed744cd9273/mash-0.5.33.tar.gz
 Source0  : http://pkgs.fedoraproject.org/repo/pkgs/mash/mash-0.5.33.tar.gz/6c5fc4f8b055c1ddc2fd6ed744cd9273/mash-0.5.33.tar.gz
 Summary  : Build system -> repository tool
