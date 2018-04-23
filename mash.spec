@@ -4,7 +4,7 @@
 #
 Name     : mash
 Version  : 0.6.19
-Release  : 20
+Release  : 21
 URL      : http://pkgs.fedoraproject.org/repo/pkgs/mash/mash-0.6.19.tar.gz/9c72ff746ee287957b2885ed7ccf162e/mash-0.6.19.tar.gz
 Source0  : http://pkgs.fedoraproject.org/repo/pkgs/mash/mash-0.6.19.tar.gz/9c72ff746ee287957b2885ed7ccf162e/mash-0.6.19.tar.gz
 Summary  : Build system -> repository tool
@@ -12,7 +12,6 @@ Group    : Development/Tools
 License  : GPL-2.0
 Requires: mash-bin
 Requires: mash-legacypython
-Requires: mash-python3
 Requires: mash-data
 Requires: mash-python
 BuildRequires : pbr
@@ -55,19 +54,9 @@ legacypython components for the mash package.
 %package python
 Summary: python components for the mash package.
 Group: Default
-Requires: mash-python3
 
 %description python
 python components for the mash package.
-
-
-%package python3
-Summary: python3 components for the mash package.
-Group: Default
-Requires: python3-core
-
-%description python3
-python3 components for the mash package.
 
 
 %prep
@@ -78,18 +67,13 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1524503176
+export SOURCE_DATE_EPOCH=1524507320
 python2 setup.py build -b py2
-python3 setup.py build -b py3
 
 %install
 export SOURCE_DATE_EPOCH=1524503176
 rm -rf %{buildroot}
-python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
-python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
-echo ----[ mark ]----
-cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
-echo ----[ mark ]----
+python2 -tt setup.py build -b py2 install --root=%{buildroot}
 
 %files
 %defattr(-,root,root,-)
@@ -108,7 +92,3 @@ echo ----[ mark ]----
 
 %files python
 %defattr(-,root,root,-)
-
-%files python3
-%defattr(-,root,root,-)
-/usr/lib/python3*/*
