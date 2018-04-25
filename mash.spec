@@ -4,7 +4,7 @@
 #
 Name     : mash
 Version  : 0.6.19
-Release  : 21
+Release  : 22
 URL      : http://pkgs.fedoraproject.org/repo/pkgs/mash/mash-0.6.19.tar.gz/9c72ff746ee287957b2885ed7ccf162e/mash-0.6.19.tar.gz
 Source0  : http://pkgs.fedoraproject.org/repo/pkgs/mash/mash-0.6.19.tar.gz/9c72ff746ee287957b2885ed7ccf162e/mash-0.6.19.tar.gz
 Summary  : Build system -> repository tool
@@ -67,20 +67,22 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1524507320
+export SOURCE_DATE_EPOCH=1524678870
 python2 setup.py build -b py2
 
 %install
-export SOURCE_DATE_EPOCH=1524503176
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot}
+## make_install_append content
+mv %{buildroot}/usr/bin/mash.py %{buildroot}/usr/bin/mash
+## make_install_append end
 
 %files
 %defattr(-,root,root,-)
 
 %files bin
 %defattr(-,root,root,-)
-/usr/bin/mash.py
+/usr/bin/mash
 
 %files data
 %defattr(-,root,root,-)
