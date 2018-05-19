@@ -4,7 +4,7 @@
 #
 Name     : mash
 Version  : 0.6.19
-Release  : 24
+Release  : 25
 URL      : http://pkgs.fedoraproject.org/repo/pkgs/mash/mash-0.6.19.tar.gz/9c72ff746ee287957b2885ed7ccf162e/mash-0.6.19.tar.gz
 Source0  : http://pkgs.fedoraproject.org/repo/pkgs/mash/mash-0.6.19.tar.gz/9c72ff746ee287957b2885ed7ccf162e/mash-0.6.19.tar.gz
 Summary  : Build system -> repository tool
@@ -19,6 +19,7 @@ BuildRequires : pip
 BuildRequires : python-dev
 BuildRequires : python3-dev
 BuildRequires : setuptools
+Patch1: 0001-Use-createrepo_c.patch
 
 %description
 mash is a tool that queries a koji buildsystem for the latest RPMs for
@@ -61,13 +62,14 @@ python components for the mash package.
 
 %prep
 %setup -q -n mash-0.6.19
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1524678870
+export SOURCE_DATE_EPOCH=1526703501
 python2 setup.py build -b py2
 
 %install

@@ -1,0 +1,37 @@
+From 48f58bd8062f1d60229a566cd1859ca09dfba30f Mon Sep 17 00:00:00 2001
+From: George T Kramer <george.t.kramer@intel.com>
+Date: Sat, 19 May 2018 04:14:46 +0000
+Subject: [PATCH] Use createrepo_c
+
+On Clear, we package createrepo_c instead of createrepo because it is
+more performant.  Because there is no configuration option for mash to
+switch to using createrepo_c, forcing use of this by default on Clear.
+---
+ mash/metadata.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/mash/metadata.py b/mash/metadata.py
+index de5050b..fd3fc3b 100644
+--- a/mash/metadata.py
++++ b/mash/metadata.py
+@@ -37,7 +37,7 @@ def _make_ancient(path, excludes, previous, logger):
+ class MetadataOld:
+ 
+     def __init__(self, logger):
+-        self.args = ['createrepo', '--update', '-q']
++        self.args = ['createrepo_c', '--update', '-q']
+         self.previous = None
+         self.logger = logger
+         self.excludes = []
+@@ -100,7 +100,7 @@ class MetadataOld:
+                     "Couldn't copy repodata from %s" % (self.previous,))
+         pid = os.fork()
+         if not pid:
+-            os.execv("/usr/bin/createrepo", self.args)
++            os.execv("/usr/bin/createrepo_c", self.args)
+         else:
+             (p, status) = os.waitpid(pid, 0)
+         if self.ancient:
+-- 
+2.17.0
+
