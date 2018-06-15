@@ -16,7 +16,7 @@ Requires: mash-data
 Requires: mash-python
 BuildRequires : pbr
 BuildRequires : pip
-BuildRequires : python-dev
+
 BuildRequires : python3-dev
 BuildRequires : setuptools
 Patch1: 0001-Use-createrepo_c.patch
