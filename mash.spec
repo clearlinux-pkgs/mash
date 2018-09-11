@@ -4,7 +4,7 @@
 #
 Name     : mash
 Version  : 0.6.19
-Release  : 28
+Release  : 29
 URL      : http://pkgs.fedoraproject.org/repo/pkgs/mash/mash-0.6.19.tar.gz/9c72ff746ee287957b2885ed7ccf162e/mash-0.6.19.tar.gz
 Source0  : http://pkgs.fedoraproject.org/repo/pkgs/mash/mash-0.6.19.tar.gz/9c72ff746ee287957b2885ed7ccf162e/mash-0.6.19.tar.gz
 Summary  : Build system -> repository tool
@@ -14,6 +14,7 @@ Requires: mash-bin
 Requires: mash-license
 Requires: mash-data
 Requires: mash-python
+Requires: mash-legacypython
 BuildRequires : buildreq-distutils
 BuildRequires : buildreq-distutils3
 Patch1: 0001-Use-createrepo_c.patch
@@ -75,7 +76,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535067115
+export SOURCE_DATE_EPOCH=1536701381
 python2 setup.py build -b py2
 
 %install
